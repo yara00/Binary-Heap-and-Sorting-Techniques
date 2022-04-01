@@ -2,7 +2,7 @@ public class Sort {
     public static void bubbleSort(int arr[]) {
         for (int i = 0; i < arr.length - 1; i++) {
             for (int j = 0; j < arr.length - i - 1; j++) {
-                if (arr[j] < arr[j + 1]) {
+                if (arr[j] > arr[j + 1]) {
                     int temp = arr[j];
                     arr[j] = arr[j + 1];
                     arr[j + 1] = temp;
@@ -25,20 +25,20 @@ public class Sort {
     public static void selectionSort(int arr[]) {
         int indx = 0;
         for (int i = 0; i < arr.length; i++) {
-            int max = arr[i];
-            int maxIndx = i;
-            int flag = 0;
+            int min = arr[i];
+            int minIndx = i;
+         //   int flag = 0;
             for (int j = i + 1; j < arr.length; j++) {
-                if (max < arr[j]) {
-                    flag = 1;
-                    max = arr[j];
-                    maxIndx = j;
+                if (min > arr[j]) {
+                   // flag = 1;
+                    min = arr[j];
+                    minIndx = j;
                 }
             }
-            if (flag == 0) return;
+          //  if (flag == 0) return;
             int temp = arr[indx];
-            arr[indx] = max;
-            arr[maxIndx] = temp;
+            arr[indx] = min;
+            arr[minIndx] = temp;
             indx++;
         }
 
@@ -66,7 +66,7 @@ public class Sort {
         int j = 0;
         int k = 0;
         while (i < right.length && j < left.length) {
-            if (right[i] > left[j]) {
+            if (right[i] < left[j]) {
                 arr[k] = right[i];
                 i++;
             } else {
@@ -108,7 +108,7 @@ public class Sort {
         int pivot = arr[end];
         int pivotIndex = start;
         for (int i = start; i < end; i++){
-            if(arr[i] >= pivot){
+            if(arr[i] <= pivot){
                 int temp = arr[i];
                 arr[i] = arr[pivotIndex];
                 arr[pivotIndex] = temp;
