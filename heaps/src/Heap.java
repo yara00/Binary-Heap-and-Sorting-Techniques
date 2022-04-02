@@ -1,10 +1,6 @@
-import java.util.Random;
-
 class Heap {
-   //  private static int[] array = {3,20,1,5,6,4};
-     public int heapSize;
-  //  private static int heapSize = 0;
 
+     public int heapSize;
     // method to float down the values recursively to maintain max heap property
     public void maxHeapify(int array[], int i) {
         int root = i; // parent
@@ -24,6 +20,7 @@ class Heap {
     }
     // method to convert array to max heap
     public void buildMaxHeap(int array[]) {
+        heapSize = array.length;
         for (int i=heapSize/2-1; i>=0;i--)
             maxHeapify(array, i);
     }
@@ -44,7 +41,7 @@ class Heap {
     }
     // method to return max element in a heap
     public int heapExtractMax(int array[]) {
-        if(heapSize < 1) System.out.println("Heap Underflow");
+        if(heapSize < 0) System.out.println("Heap Underflow");
         int max;
         max = array[0];
         array[0] = array[heapSize];
@@ -57,12 +54,12 @@ class Heap {
         if(key < array[i])
             return;
         array[i] = key;
-        while((i > 1) && (array[(i/2)-1] < array[i])) { // swap when parent less than array[i]
-            int temp = array[(i/2)-1];
-            array[(i/2)-1] = array[i];
+        while((i > 0) && (array[(i-1)/2] < array[i])) { // swap when parent less than array[i]
+            int temp = array[(i-1)/2];
+            array[(i-1)/2] = array[i];
             array[i] = temp;
 
-            i = (i / 2) - 1; // upgrade to parent
+            i = (i-1) / 2; // upgrade to new parent
         }
     }
     // method to implement priority queue insertion using heap
@@ -72,7 +69,4 @@ class Heap {
         heapIncreaseKey(array, heapSize, key);
     }
 
-    public static void main(String[] args) {
-
-    }
 }
